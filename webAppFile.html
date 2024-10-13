@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Radionics & Magicka Caster - Flight Ability Activation</title>
+    <style>
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #0a0a0a;
+            color: #f0f0f0;
+            padding: 20px;
+            text-align: center;
+        }
+        .device-container {
+            border: 3px solid #b5b5b5;
+            border-radius: 20px;
+            padding: 20px;
+            display: inline-block;
+            background: linear-gradient(145deg, #2a2a2a, #121212);
+            box-shadow: 10px 10px 20px #090909, -10px -10px 20px #1b1b1b;
+        }
+        .input-box {
+            margin: 15px 0;
+        }
+        .input-box input[type=text], .input-box input[type=range] {
+            padding: 10px;
+            border-radius: 5px;
+            width: 80%;
+            border: 1px solid #333;
+            font-size: 16px;
+        }
+        .activate-btn, .ritual-btn, .flight-btn {
+            margin: 20px;
+            padding: 15px 30px;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 18px;
+        }
+        .activate-btn:hover, .ritual-btn:hover, .flight-btn:hover {
+            background-color: #45a049;
+        }
+        .visual-container {
+            margin: 20px auto;
+            width: 250px;
+            height: 250px;
+            background-color: #262626;
+            border-radius: 50%;
+            position: relative;
+            overflow: hidden;
+        }
+        .ley-lines {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 50px;
+            height: 50px;
+            background-color: #5acfa9;
+            opacity: 0.8;
+            transform: translate(-50%, -50%);
+            animation: ley-lines-pulse 3s infinite;
+            border-radius: 50%;
+        }
+        .ley-lines:after {
+            content: '';
+            position: absolute;
+            top: -50px;
+            left: -50px;
+            width: 150%;
+            height: 150%;
+            border: 2px solid #5acfa9;
+            border-radius: 50%;
+            opacity: 0.3;
+        }
+        @keyframes ley-lines-pulse {
+            0% { width: 50px; height: 50px; opacity: 0.8; }
+            50% { width: 120px; height: 120px; opacity: 0.5; }
+            100% { width: 50px; height: 50px; opacity: 0.8; }
+        }
+        .output {
+            margin: 20px;
+            font-size: 22px;
+            color: #fffca1;
+        }
+        .esoteric-text {
+            font-size: 18px;
+            font-style: italic;
+            margin-top: 10px;
+            color: #dedede;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Advanced Radionics & Magicka Caster</h1>
+<h3>Flight Ability Activation Protocol</h3>
+
+<div class="device-container">
+    <h2>Set Frequency & Intention</h2>
+
+    <!-- Intention input box -->
+    <div class="input-box">
+        <label for="intention">Spell Intent (I wish to fly...):</label><br>
+        <input type="text" id="intention" placeholder="Set your intention to unlock flight ability...">
+    </div>
+
+    <!-- Frequency input range -->
+    <div class="input-box">
+        <label for="frequency">Ley Line Resonance Frequency:</label><br>
+        <input type="range" id="frequency" min="1" max="100" value="50" oninput="updateFrequencyDisplay()">
+        <span id="frequency-display">50</span>
+    </div>
+
+    <!-- Visualization Container for Ley Lines -->
+    <div class="visual-container">
+        <div class="ley-lines"></div>
+    </div>
+
+    <!-- Activation buttons -->
+    <button class="activate-btn" onclick="activateFlightAbility()">Activate Flight Ability</button>
+    <button class="ritual-btn" onclick="performRitual()">Perform Magick Ritual</button>
+    <button class="flight-btn" id="flight-btn" onclick="activateFlight()" style="display:none;">Perform Flight</button>
+
+    <!-- Esoteric instructions for ritual -->
+    <div class="esoteric-text" id="ritual-text">
+        Set your intent. Feel the flow of ley lines beneath your feet. Use the dial to synchronize your soul with the fabric of space-time.
+    </div>
+
+    <!-- Spell result output -->
+    <div class="output" id="output"></div>
+</div>
+
+<script>
+    let flightAbilityActive = false; // Track if flight ability is unlocked
+
+    // Function to update frequency display as user changes the range
+    function updateFrequencyDisplay() {
+        const frequency = document.getElementById('frequency').value;
+        document.getElementById('frequency-display').textContent = frequency;
+    }
+
+    // Function to simulate the activation of flight ability
+    function activateFlightAbility() {
+        const intention = document.getElementById('intention').value;
+        const frequency = document.getElementById('frequency').value;
+        const output = document.getElementById('output');
+
+        if (!intention.toLowerCase().includes('fly')) {
+            output.textContent = "Intention must include the desire to unlock the flight ability.";
+            return;
+        }
+
+        // Simulate the ability activation
+        output.textContent = `Tuning into ley line frequency ${frequency}... Preparing to unlock the flight ability.`;
+
+        // Unlock the flight ability after a delay
+        setTimeout(() => {
+            output.textContent = "Flight ability unlocked! You can now perform flight.";
+            flightAbilityActive = true;
+            document.getElementById('flight-btn').style.display = "inline-block"; // Show flight button
+        }, 5000);
+    }
+
+    // Function to perform a ritual that enhances spell power
+    function performRitual() {
+        const output = document.getElementById('output');
+        const frequency = document.getElementById('frequency').value;
+        const ritualText = document.getElementById('ritual-text');
+
+        // Enact ancient spell preparation
+        ritualText.textContent = "Chant the words: *Ascenditur Volare*, Feel the energy beneath the earth rise.";
+
+        // Simulation of casting ritual
+        setTimeout(() => {
+            output.textContent = `Magick ritual complete. Your flight ability frequency ${frequency} is now empowered!`;
+        }, 7000);
+    }
+
+    // Function to simulate flight action once ability is unlocked
+    function activateFlight() {
+        const output = document.getElementById('output');
+
+        if (!flightAbilityActive) {
+            output.textContent = "You must unlock the flight ability first!";
+            return;
+        }
+
+        // Simulate the flying process
+        output.textContent = "You are now taking off... Flight initiated!";
+    }
+</script>
+
+</body>
+</html>
